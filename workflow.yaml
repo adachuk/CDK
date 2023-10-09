@@ -4,7 +4,7 @@ name: Testworkflow
 on: 
   push:
     branches:
-      - lucycdk
+      - lucygit
 jobs:
   check-disk-usuage:
     runs-on: macos-latest
