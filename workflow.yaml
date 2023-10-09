@@ -31,7 +31,7 @@ jobs:
       # dependent jobs 
   dependant_job:
     runs-on: macos-latest
-    needs: view SW version
+    needs: firstworkflow
     steps:
       - name: echo a string 
       - run: write-output "macos string" 
