@@ -1,12 +1,12 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Testtworkflow
+name: Testworkflow
 on: 
   push:
     branches:
       - lucycdk
 jobs:
-  build:
+  check-disk-usuage:
     runs-on: macos-latest
 
     steps:
@@ -15,7 +15,7 @@ jobs:
 
   dependant_job:
     runs-on: macos-latest
-    needs: testworkflow
+    needs: check-disk-usuage
     steps:
       - name: echo a string 
       - run: write-output "macos string" 
