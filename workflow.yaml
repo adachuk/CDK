@@ -3,7 +3,8 @@
 name: Testtworkflow
 on: 
   push:
-    branches: [ "lucycdk" ]
+    branches:
+      - lucycdk
 jobs:
   build:
     runs-on: macos-latest
