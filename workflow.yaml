@@ -1,0 +1,21 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Testworkflow
+on: 
+  push:
+    branches:
+      - lucygit
+jobs:
+  check-disk-usuage:
+    runs-on: macos-latest
+
+    steps:
+      - name: check disk usage
+        run: df -h
+
+  dependant_job:
+    runs-on: macos-latest
+    needs: check-disk-usuage
+    steps:
+      - name: echo a string 
+      - run: write-output "macos string" 
