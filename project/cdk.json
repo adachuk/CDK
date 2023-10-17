@@ -25,6 +25,20 @@
     "@aws-cdk/core:target-partitions": [
       "aws",
       "aws-cn"
-    ]
+    ],
+    "dev":{
+      "account_id": "636188616750",
+      "region": "us-east-1",
+      "vpc_id": "vpc-0089aa547ce32f162",
+      "subnet_id": ["subnet-0b7953aae630a63d7", "subnet-0efd57f848408c5e6"]
+    },
+    "test":{
+      "account_id": "",
+      "region": "us-east-1"
+    },
+    "prod":{
+      "account_id": "",
+      "region": "us-east-1"
+    }
   }
 }
