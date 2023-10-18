@@ -2,7 +2,7 @@ name: Test ProjectStack
 on:
     push:
         branches:
-            lucycdk
+            - lucycdk
 jobs:
     test-and-build:
         runs-on: ubuntu-latest
