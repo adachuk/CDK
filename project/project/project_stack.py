@@ -86,16 +86,19 @@ class ProjectStack(Stack):
         
         ))
 
-        #  here i import the ECR repo i created manaully on aws 
+         #here i import the ECR repo i created manaully on aws 
         ecr_repo = ecr.Repository.from_repository_name(self,"chatapp-ecr",
                  repository_name="mychatapp") 
-        # 
+    
 
         # here is my image based on the chatapp ecr repo
         chatapp_image = ecs.EcrImage.from_ecr_repository(
             repository=ecr_repo,
             tag="latest"
         )
+
+        # create ecr repo 
+        #chatapp_repo = ecr.Repository(self, "chat-app-repo")
 
         # here i add a container 
         chat_app_container = chat_app_task_serv_def.add_container(

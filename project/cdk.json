@@ -29,8 +29,8 @@
     "dev":{
       "account_id": "636188616750",
       "region": "us-east-1",
-      "vpc_id": "vpc-0089aa547ce32f162",
-      "subnet_id": ["subnet-0b7953aae630a63d7", "subnet-0efd57f848408c5e6"]
+      "vpc_id": "vpc-03cca3fbb3865213e",
+      "subnet_id": ["subnet-056d2de0132b86039", "subnet-00493e9ba1d542c80"]
     },
     "test":{
       "account_id": "",
