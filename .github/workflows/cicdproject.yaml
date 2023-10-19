@@ -16,7 +16,7 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout
+            - name: Checkout this repo
               uses: actions/checkout@v3
             - name: Configure AWS Credentials
               uses: aws-actions/configure-aws-credentials@v4
@@ -34,6 +34,7 @@ jobs:
                #install python and its dependencies
             - name: Install python
               run: |
+                pip install --upgrade pip
                 npm install -g aws-cdk
                 pip install -r requirments.txt
             - name: Deploy to aws
