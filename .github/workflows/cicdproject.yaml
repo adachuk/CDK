@@ -21,7 +21,7 @@ jobs:
             - name: Configure AWS Credentials
               uses: aws-actions/configure-aws-credentials@v4
               with:
-                role-to-assume: arn:aws:iam::511817881636:role/OIDC
+                role-to-assume: arn:aws:iam::246185690786:role/OIDCrole
                 aws-region: us-east-1
             - name: Set up Python 3.11
               uses: actions/setup-python@v4
@@ -34,6 +34,7 @@ jobs:
                #install python and its dependencies
             - name: Install python
               run: |
+                python --version
                 pip install --upgrade pip
                 npm install -g aws-cdk
                 pip install -r requirments.txt

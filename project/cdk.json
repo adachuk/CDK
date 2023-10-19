@@ -27,10 +27,10 @@
       "aws-cn"
     ],
     "dev":{
-      "account_id": "511817881636",
+      "account_id": "246185690786",
       "region": "us-east-1",
-      "vpc_id": "vpc-0014c390b4b975862",
-      "subnet_id": ["subnet-07dc892ee9e46f7e9", "subnet-02a85011dc700eb3c"]
+      "vpc_id": "vpc-093177f72a4fbee18",
+      "subnet_id": ["subnet-06eda7e8a77d6b687", "subnet-0914f32116986b5ab"]
     },
     "test":{
       "account_id": "",
