@@ -32,6 +32,8 @@ jobs:
               with:
                node-version: "16"
                #install python and its dependencies
+            - name: Checkout
+              uses: actions/checkout@v3
             - name: Install python dependencies and CDK 
               run: |
                 python3 -m pip install --upgrade pip
