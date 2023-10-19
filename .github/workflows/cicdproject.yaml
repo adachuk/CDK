@@ -36,5 +36,8 @@ jobs:
               run: |
                 npm install -g aws-cdk
                 pip install -r requirements.txt
-            - name: Deploy to aws
-              run: cdk deploy --app="python3 ${PWD}/Users/adaobilucy/Github/learningCloudFormation/CDKProject/project" --require-approval=never
+            - name: Deploy project_Stack.py (via CDK)
+              uses: youyo/aws-cdk-github-actions@v2
+              with:
+                cdk_subcommand: 'deploy'
+                cdk_stack: ‘project_Stack.py'
