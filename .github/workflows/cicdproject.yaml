@@ -32,7 +32,7 @@ jobs:
               with:
                node-version: "16"
                #install python and its dependencies
-            - name: check  /Users/adaobilucy/Github/learningCloudFormation/CDKProject/project
+            - name: Install python
               run: |
                 pip install --upgrade pip
                 npm install -g aws-cdk
