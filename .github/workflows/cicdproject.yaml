@@ -34,7 +34,7 @@ jobs:
                #install python and its dependencies
             - name: check  /Users/adaobilucy/Github/learningCloudFormation/CDKProject/project
               run: |
-                python3 -m pip install --upgrade pip
+                pip install --upgrade pip
                 npm install -g aws-cdk
                 pip install -r requirments.txt
             - name: Deploy to aws
