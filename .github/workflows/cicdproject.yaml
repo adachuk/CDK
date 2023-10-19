@@ -26,14 +26,15 @@ jobs:
             - name: Set up Python 3.11
               uses: actions/setup-python@v4
               with:
-                python-version: "3.9"
+                python-version: "3.11"
             - name: Set up NodeJS
               uses: actions/setup-node@v3
               with:
                node-version: "16"
+               #install python and its dependencies
             - name: Install python dependencies and CDK 
               run: |
-                python -m pip install --upgrade pip
+                python3 -m pip install --upgrade pip
                 npm install -g aws-cdk
                 pip install -r requirments.txt
             - name: Deploy to aws
