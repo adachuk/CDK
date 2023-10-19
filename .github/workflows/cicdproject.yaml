@@ -9,9 +9,7 @@ permissions:
     contents: read  # This is required for actions/checkout
 defaults:
     run:
-        shell: bash
-        # working-directory: /Users/adaobilucy/Github/learningCloudFormation/CDKProject
-              
+         working-directory: ./CDKProject             
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -31,7 +29,7 @@ jobs:
               uses: actions/setup-node@v3
               with:
                node-version: "16"
-               #install python and its dependencies
+               #install  dependencies
             - name: Install Dependencies
               run: |
                 npm install -g aws-cdk
