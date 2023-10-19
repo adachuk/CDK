@@ -7,10 +7,10 @@ permissions:
     # These permissions are needed to interact with GitHub's OIDC Token
     id-token: write # This is required for requesting the JWT
     contents: read  # This is required for actions/checkout
-defaults:
-    run:
-        shell: bash
-        working-directory: /Users/adaobilucy/Github/learningCloudFormation/CDKProject/project
+# defaults:
+#     run:
+#         shell: bash
+#         # working-directory: /Users/adaobilucy/Github/learningCloudFormation/CDKProject/project
               
 jobs:
     build:
@@ -23,11 +23,11 @@ jobs:
               with:
                 role-to-assume: arn:aws:iam::246185690786:role/OIDCrole
                 aws-region: us-east-1
-            - name: Set up Python 3.11
+            - name: Install Python
               uses: actions/setup-python@v4
               with:
                 python-version: "3.11"
-            - name: Set up NodeJS
+            - name: Install NodeJS
               uses: actions/setup-node@v3
               with:
                node-version: "16"
