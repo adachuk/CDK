@@ -34,7 +34,6 @@ jobs:
                #install python and its dependencies
             - name: Install python
               run: |
-                pip install --upgrade pip
                 npm install -g aws-cdk
                 pip install -r requirments.txt
             - name: Deploy to aws
