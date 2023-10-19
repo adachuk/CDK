@@ -7,9 +7,9 @@ permissions:
     # These permissions are needed to interact with GitHub's OIDC Token
     id-token: write # This is required for requesting the JWT
     contents: read  # This is required for actions/checkout
-defaults:
-    run:
-         working-directory: ./CDKProject             
+# defaults:
+#     run:
+#          working-directory: ./CDKProject             
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -37,5 +37,7 @@ jobs:
             - name: Deploy project_Stack.py (via CDK)
               uses: youyo/aws-cdk-github-actions@v2
               with:
-                cdk_subcommand: 'deploy'
-                cdk_stack: ‘project_Stack.py'
+                cdk_subcommand: "deploy"
+                cdk_stack: "project_Stack.py"
+                cdk_args:
+                working_dir: ./CDKProject
