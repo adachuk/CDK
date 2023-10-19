@@ -35,8 +35,8 @@ jobs:
             - name: Install python
               run: |
                 python --version
-                pip install --upgrade pip
-                npm install -g aws-cdk
-                pip install -r requirments.txt
-            - name: Deploy to aws
-              run: cdk deploy --app="python3 ${PWD}/Users/adaobilucy/Github/learningCloudFormation/CDKProject/app.py" --require-approval=never
+            #     pip install --upgrade pip
+            #     npm install -g aws-cdk
+            #     pip install -r requirments.txt
+            # - name: Deploy to aws
+            #   run: cdk deploy --app="python3 ${PWD}/Users/adaobilucy/Github/learningCloudFormation/CDKProject/app.py" --require-approval=never
