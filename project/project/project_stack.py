@@ -157,7 +157,7 @@ class ProjectStack(Stack):
         # Listener port for ALB
         listner = lb.add_listener("listner",
              port=80,
-             protocol=elbv2.Protocol.HTTP,
+             protocol=elbv2.ApplicationProtocol.HTTP,
              default_target_groups=[tg]
             )
         #Route 53 hosted zone 
