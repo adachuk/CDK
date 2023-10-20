@@ -137,7 +137,7 @@ class ProjectStack(Stack):
         tg = elbv2.ApplicationTargetGroup(self,"tg1",
             port=80,
             vpc=vpc,
-            protocol=elbv2.Protocol.HTTP,
+            protocol=elbv2.ApplicationProtocol.HTTP,
             target_type=elbv2.TargetType.IP,
             target_group_name="we-did-it-finally",
             targets=[chat_app_service],
