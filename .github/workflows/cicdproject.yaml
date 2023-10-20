@@ -35,4 +35,5 @@ jobs:
                 npm install -g aws-cdk
                 pip install -r requirements.txt
             - name: Deploy stack
-              run: cdk deploy --app="python3 ${PWD}/CDKProject/project" --require-approval=never             
+              working-directory: project
+              run: cdk deploy -c env=dev ProjectStack --require-approval=never             
