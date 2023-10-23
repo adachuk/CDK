@@ -3,16 +3,20 @@ from aws_cdk import (
      aws_ec2 as ec2,
      aws_ecs as ecs,
      aws_ecr as ecr,
+     aws_ecr_assets as assets, 
      aws_ecs_patterns as ecs_patterns,
      CfnOutput as output,
      aws_iam as iam,
      aws_route53 as route53,
      aws_route53_targets as target,
      aws_elasticloadbalancingv2 as elbv2,
-     Duration
+     Duration,
+     Aws,
+     Fn
      
      )
 from constructs import Construct
+import os 
 
 class ProjectStack(Stack):
 
@@ -22,10 +26,12 @@ class ProjectStack(Stack):
         # context base  environment variables 
         env = self.node.try_get_context('env')
         context = self.node.try_get_context(env)
+        region = context["region"]
         vpc_id = context["vpc_id"]
         subnet_1 = context["subnet_id"][0]
         subnet_2 = context["subnet_id"][1]
-        
+        ecr_repo_assets = context["ecr_repo_assets"]
+
         # import default vpc
         vpc = ec2.Vpc.from_lookup(self, "imported-vpc",
             vpc_id=vpc_id
@@ -45,6 +51,7 @@ class ProjectStack(Stack):
             vpc=vpc,
             allow_all_outbound=True,
            )
+        
         sg_alb.add_ingress_rule(
             peer=ec2.Peer.any_ipv4(),
             connection=ec2.Port.tcp(80),
@@ -78,27 +85,29 @@ class ProjectStack(Stack):
             cpu=256,
             memory_limit_mib=1024                             
          )
-        
 
         # temp granting all access to the ecs execution role 
         ecs_ex_iam_role.add_to_policy(iam.PolicyStatement(actions=["*"],
             resources=["*"]
         
         ))
+        
+        current_dir = os.getcwd()
+        docker_asset = assets.DockerImageAsset(self, "image-asset",
+            directory=os.path.join(current_dir.strip("project"),"socket.io-chat-fargate")
+        )
 
-         #here i import the ECR repo i created manaully on aws 
+        
+        #  here i import the ECR repo i created manaully on aws 
         ecr_repo = ecr.Repository.from_repository_name(self,"chatapp-ecr",
-                 repository_name="mychatapp") 
+                 repository_name=f"{ecr_repo_assets}-{Aws.ACCOUNT_ID}-{region}")
     
 
         # here is my image based on the chatapp ecr repo
         chatapp_image = ecs.EcrImage.from_ecr_repository(
             repository=ecr_repo,
-            tag="latest"
+            tag=docker_asset.asset_hash
         )
-
-        # create ecr repo 
-        #chatapp_repo = ecr.Repository(self, "chat-app-repo")
 
         # here i add a container 
         chat_app_container = chat_app_task_serv_def.add_container(
@@ -148,10 +157,7 @@ class ProjectStack(Stack):
             path="/",
             port="3000",
             protocol=elbv2.Protocol.HTTP,
-            unhealthy_threshold_count=5
-
-
-            )                               
+            unhealthy_threshold_count=5)                               
             )
         
         # Listener port for ALB
@@ -160,11 +166,13 @@ class ProjectStack(Stack):
              protocol=elbv2.ApplicationProtocol.HTTP,
              default_target_groups=[tg]
             )
+        
         #Route 53 hosted zone 
         hosted_zone = route53.PrivateHostedZone(self, "HostedZone",
             zone_name="lucychatapp.local",
             vpc=vpc
          )
+        
         #Creates an A record for Route 53 dns
         route53.ARecord(self, "ARecord",
             zone= hosted_zone,
