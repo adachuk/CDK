@@ -3,10 +3,34 @@ on:
     push:
         branches:
             - lucycdk
+permissions:
+    # These permissions are needed to interact with GitHub's OIDC Token
+    id-token: write # This is required for requesting the JWT
+    contents: read  # This is required for actions/checkout           
 jobs:
-    test-and-build:
+    build:
         runs-on: ubuntu-latest
         steps:
-            - name: Get code
+            - name: Checkout this repo
               uses: actions/checkout@v3
-# temp
+            - name: Configure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                role-to-assume: arn:aws:iam::493667426232:role/OIDC
+                aws-region: us-east-1
+            - name: Install Python
+              uses: actions/setup-python@v4
+              with:
+                python-version: "3.11"
+            - name: Install NodeJS
+              uses: actions/setup-node@v3
+              with:
+               node-version: "16"
+               #install  dependencies
+            - name: Install Dependencies
+              run: |
+                npm install -g aws-cdk
+                pip install -r requirements.txt
+            - name: Deploy stack
+              working-directory: project
+              run: cdk deploy -c env=dev ProjectStack --require-approval=never       

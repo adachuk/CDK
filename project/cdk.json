@@ -27,10 +27,11 @@
       "aws-cn"
     ],
     "dev":{
-      "account_id": "636188616750",
+      "account_id": "493667426232",
       "region": "us-east-1",
-      "vpc_id": "vpc-03cca3fbb3865213e",
-      "subnet_id": ["subnet-056d2de0132b86039", "subnet-00493e9ba1d542c80"]
+      "vpc_id": "vpc-088a3bae164ae7085",
+      "subnet_id": ["subnet-0daaa5604ce6d3d0e", "subnet-027d93bae2ff027da"],
+      "ecr_repo_assets": "cdk-hnb659fds-container-assets"
     },
     "test":{
       "account_id": "",
