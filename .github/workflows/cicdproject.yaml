@@ -1,5 +1,5 @@
 name: Test ProjectStack
-on:
+on: 
     push:
         branches:
             - lucycdk
