@@ -60,7 +60,7 @@ class MigrationStack(Stack):
                 ))
             
         # creating a subnet object
-        subnet_a = ec2.Subnet.from_subnet_id(self, "impotedSubnet",
+        subnet_a = ec2.Subnet.from_subnet_id(self, "importedSubnet",
             subnet_id=subnet_1)                                      
 
         # creating a subnet object
