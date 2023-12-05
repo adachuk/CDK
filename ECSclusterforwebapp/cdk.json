@@ -31,7 +31,7 @@
       "region": "us-east-1",
       "vpc_id": "vpc-033a5d21f58a09229",
       "subnet_id": ["subnet-002c32193dc4c0768", "subnet-09cd2d7d7b7b86bdb"],
-      "ecr_repo_assets": "cdk-hnb659fds-container-assets-324623897162-us-east-1"
+      "ecr_repo_assets": "cdk-hnb659fds-container-assets"
     },
     "test":{
       "account_id": "",
