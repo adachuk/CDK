@@ -90,7 +90,7 @@ class MigrationStack(Stack):
         sg_ecs.add_ingress_rule(
             peer=ec2.Peer.security_group_id(security_group_id=sg_alb.security_group_id),
             connection=ec2.Port.tcp(80),
-            description="allow connection from alb security group"
+            description="allow connection from applb security group"
         )
         
         #Create ECS task execution role 
