@@ -4,6 +4,10 @@ from aws_cdk import (
     aws_ecs as ecs,
     aws_ecr as ecr,
     aws_iam as iam,
+    aws_sns as sns,
+    aws_events as events,
+    aws_events_targets as event_targets,
+    aws_sns_subscriptions as sns_subs,
     aws_elasticloadbalancingv2 as elbv2,
     aws_route53 as route53,
     aws_ecr_assets as assets,
@@ -35,6 +39,15 @@ class MigrationStack(Stack):
             vpc_id=vpc_id,
          )
         
+        #create SNS topic to link to cloud watch to monitor pipeline
+        pipelinetopic = sns.Topic(self, "newtopic",
+            topic_name="Pipelinetopic",
+            display_name="SNS Topic to monitor pipeline"
+            )
+        #subscribe to sns topic
+        pipelinetopic.add_subscription(sns_subs.EmailSubscription("adachukwuemeka23@gmail.com"))
+
+        #Creating a cloud watch event rule for cloud watch event
         
         #Create a VPC endpoint(Allows AWS resources communicate with eachother securely over the network without IGW,NAT or VPN)
         VpcEndpoint = ec2.InterfaceVpcEndpoint(self, "Vpc Enpoint",
