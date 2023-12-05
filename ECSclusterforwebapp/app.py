@@ -16,6 +16,4 @@ region = context['region']
 aws_env = Environment(account=account,region=region)
 MigrationStack(app, "MigrationStack",env=aws_env)
 
-    
-
-
+app.synth()
